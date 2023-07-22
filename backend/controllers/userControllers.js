@@ -1,1 +1,5 @@
-export const registerUser = () => {}
+const User = require("../models/userModel");
+
+export const registerUser = async(req, res) => {
+  res.send("Register User")
+}
