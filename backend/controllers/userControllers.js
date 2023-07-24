@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.cookie('token', token, {
       path: '/',
       httpOnly: true,
-      expires: new Date(Date.now( + 1000 * 86400)),// 1 day
+      expires: new Date(Date.now() + 1000 * 86400),// 1 day
       sameSite: "none",
       secure: true 
     })
@@ -77,13 +77,13 @@ const loginUser = asyncHandler(async(req,res) => {
 
    //Generate token
    const token = generateToken(user._id);
-
-   if(passwordIsCorrect) {
+   
    // Send HTTP only cookie
+   if(passwordIsCorrect) {
    res.cookie('token', token, {
      path: '/',
      httpOnly: true,
-     expires: new Date(Date.now( + 1000 * 86400)),// 1 day
+     expires: new Date(Date.now() + 1000 * 86400),// 1 day
      sameSite: "none",
      secure: true 
    })
@@ -111,13 +111,21 @@ const logoutUser = asyncHandler(async(req,res) => {
 })
 
 //Get UserData
-const getUser = asyncHandler(async(req,res) => {
-  res.send('Get data')
+const getuser = asyncHandler(async(req,res) => {
+ const user = await User.findById(req.user._id);
+
+ if (user) {
+  const { _id, name, email, photo, phone, bio } = user;
+  res.status(200).json({ _id, name, email, photo, phone, bio });
+} else {
+  res.status(400);
+  throw new Error("User not found!");
+}
 })
 
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
-  getUser
+  getuser
 };
