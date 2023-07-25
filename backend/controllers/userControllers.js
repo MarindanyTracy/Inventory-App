@@ -137,10 +137,15 @@ const loginStatus = asyncHandler(async(req,res) => {
   return res.json(false);
 })
 
+const updateUser = asyncHandler(async(req,res) => {})
+const changePassword = asyncHandler(async(req,res) => {})
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
   getuser,
-  loginStatus
+  loginStatus,
+  updateUser,
+  changePassword
 };
