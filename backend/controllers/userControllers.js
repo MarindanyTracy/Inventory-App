@@ -163,9 +163,9 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error("User not found!")
   }
 });
-// const changePassword = asyncHandler(async(req,res) => {
-//   res.send('Success')
-// })
+const changePassword = asyncHandler(async(req,res) => {
+  res.send('Success')
+})
 
 module.exports = {
   registerUser,
@@ -174,5 +174,5 @@ module.exports = {
   getuser,
   loginStatus,
   updateUser,
-  // changePassword,
+  changePassword,
 };
