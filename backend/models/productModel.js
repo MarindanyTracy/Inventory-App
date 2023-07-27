@@ -23,7 +23,7 @@ const productSchema = mongoose.Schema({
     trim: true
   },
   quantity: {
-    type: String,
+    type: Number,
     required: [true, "Please add a quantity"],
     trim: true
   },
