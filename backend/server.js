@@ -1,5 +1,6 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -15,6 +16,9 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
+
 
 // Routes Middleware
 app.use("/api/users", userRoute)
