@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Product = require('../models/productModel');
 const { fileSizeFormatter } = require("../utils/fileUpload");
+const { response } = require("express");
 const cloudinary = require("cloudinary").v2;
 
 const createProduct = asyncHandler( async(req, res) => {
@@ -53,7 +54,25 @@ const getProducts = asyncHandler(async (req,res) => {
 
   res.status(200).json(products)
 })
+
+//Get single product
+const getProduct = asyncHandler(async (req,res) => {
+  const product = await Product.findById(req.params.id)
+
+  if(!product) {
+    res.status(404)
+    throw new Error("Product not found")
+  }
+
+  if(product.user.toString() !== req.user.id) {
+    res.status(401)
+    throw new Error("Not Authorized")
+  }
+
+  res.status(200).json(product);
+})
 module.exports = {
   createProduct,
-  getProducts
+  getProducts,
+  getProduct
 }
