@@ -133,7 +133,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   //Update Product
   const updatedProduct = await Product.findByIdAndUpdate(
     { _id: req.params.id },
-    { name, category, quantity, price, description, image: fileData || product.image },
+    { name, category, quantity, price, description, image: Object.keys(fileData).length === 0 ? product?.image : fileData },
     { new: true, runValidators: true }
   );
  
