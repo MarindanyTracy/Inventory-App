@@ -88,9 +88,17 @@ const deleteProduct = asyncHandler(async (req, res) => {
   await product.deleteOne();
   res.status(200).json({ message: "Product deleted." });
 });
+
+//Update product
+const updateProduct = asyncHandler(async(req,res) => {
+  res.send('Update')
+})
+
+
 module.exports = {
   createProduct,
   getProducts,
   getProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct
 }
