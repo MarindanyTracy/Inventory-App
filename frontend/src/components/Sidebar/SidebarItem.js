@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SidebarItem = () => {
+const SidebarItem = ({item,isOpen}) => {
   return (
     <div>
       

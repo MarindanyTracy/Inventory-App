@@ -28,9 +28,13 @@ const toggle = () => setIsOpen(!isOpen);
 
         </div>
 
+        {menu.map((item,index) => {
+          return <SidebarItem key={index} item={item} isOpen={isOpen} />
+        })}
+
       </div>
 
-      <main>{children}</main>
+      <main style={{ paddingLeft: isOpen ? "230px" : "60px", transition: "all .5s"}}>{children}</main>
     </div>
   )
 }
