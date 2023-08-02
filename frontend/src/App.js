@@ -4,6 +4,9 @@ import Login from './Pages/Auth/Login';
 import Register from './Pages/Auth/Register';
 import Forgot from './Pages/Auth/Forgot';
 import Reset from './Pages/Auth/Reset';
+import Sidebar from './components/Sidebar/Sidebar';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
@@ -14,6 +17,14 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot" element={<Forgot />} />
       <Route path="/resetpassword/:resetToken" element={<Reset />} />
+
+      <Route path="/dashboard" element={
+        <Sidebar>
+          <Layout>
+            <Dashboard />
+          </Layout>
+        </Sidebar>
+      } />
     </Routes>
     </BrowserRouter>
   )}
