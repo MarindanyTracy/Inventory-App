@@ -21,9 +21,9 @@ main {
 
 .top_section {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 10px 15px;
-  // border-bottom: 2px solid #ccc;
   transition: all 0.5s;
   background-color: var(--dark-blue);
   height: 70px;
