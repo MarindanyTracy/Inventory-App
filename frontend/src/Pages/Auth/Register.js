@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
 import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
+import Loader from "../../components/Loader/loader";
 
 const initialState = {
   name: "",
@@ -67,6 +68,7 @@ const Register = () => {
 
   return (
     <div className={`container ${styles.auth}`}>
+      {isLoading && <Loader /> }
       <Card>
         <div className={styles.form}>
           <div className="--flex-center">
