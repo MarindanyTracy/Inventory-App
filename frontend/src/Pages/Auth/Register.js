@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import styles from "./auth.module.scss";
 import { TiUserAddOutline } from "react-icons/ti";
 import Card from "../../components/Card/Card";
-import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
+import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 
 const initialState = {
   name: "",
@@ -14,6 +16,9 @@ const initialState = {
 };
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,7 +54,9 @@ const Register = () => {
     setIsLoading(true)
     try {
       const data = await registerUser(userData);
-      console.log(data)
+      await dispatch(SET_LOGIN(true))
+      await dispatch(SET_NAME(data.name))
+      navigate('/dashboard')
       setIsLoading(false)
     } catch (error) {
       setIsLoading(false);
