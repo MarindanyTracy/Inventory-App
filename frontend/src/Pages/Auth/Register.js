@@ -3,6 +3,8 @@ import styles from "./auth.module.scss";
 import { TiUserAddOutline } from "react-icons/ti";
 import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { registerUser, validateEmail } from "../../services/authService";
 
 const initialState = {
   name: "",
@@ -22,10 +24,37 @@ const Register = () => {
     setFormData({...formData, [name]: value})
   };
 
-  const register = (e) => {
-    e.preventDefault()
+  const register = async(e) => {
+    e.preventDefault();
 
-    console.log(formData)
+    if(!validateEmail(email) ) {
+      return toast.error("Please enter a valid email!")
+    }
+    if(!name || !email || !password) {
+      return toast.error("All fields are required!")
+    }
+    if(password !== password2) {
+      return toast.error("Passwords don't match!")
+    }
+    if(password.length < 6 ) {
+      return toast.error("Passwords must be upto 6 characters!")
+    }
+
+    const userData = {
+       name,
+       email,
+       password
+    }
+
+    setIsLoading(true)
+    try {
+      const data = await registerUser(userData);
+      console.log(data)
+      setIsLoading(false)
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message)
+    }
   };
 
 
