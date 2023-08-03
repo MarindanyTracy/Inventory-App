@@ -7,6 +7,9 @@ import Reset from './Pages/Auth/Reset';
 import Sidebar from './components/Sidebar/Sidebar';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Layout from './components/Layout/Layout';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true
 
 function App() {
   return (
