@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import ProductForm from '../../components/productForm/ProductForm'
 import { useDispatch, useSelector } from 'react-redux';
 import { createProduct, selectIsLoading } from '../../redux/features/product/productSlice';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader/loader';
+import ProductForm from '../../components/product/productForm/ProductForm';
 
 
 const initialState = {
