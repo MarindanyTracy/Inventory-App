@@ -63,7 +63,7 @@ const AddProduct = () => {
     <div>
       <h3 className='--mt'>Add New Product</h3>
       <ProductForm
-       product ={product}
+       product ={products}
        productImage={productImage}
        imagePreview={imagePreview}
        description={description}
