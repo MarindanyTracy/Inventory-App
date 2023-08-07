@@ -3,6 +3,8 @@ import ProductForm from '../../components/productForm/ProductForm'
 import { useDispatch, useSelector } from 'react-redux';
 import { createProduct, selectIsLoading } from '../../redux/features/product/productSlice';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/Loader/loader';
+
 
 const initialState = {
   name : "",
@@ -12,14 +14,14 @@ const initialState = {
 }
 const AddProduct = () => {
 
-  const [products, setProducts] = useState(initialState);
+  const [product, setProducts] = useState(initialState);
   const [productImage, setProductImage] = useState('');
   const [ imagePreview, setImagePreview] = useState(null);
   const [description, setDescription] = useState('')
 
   const isLoading = useSelector(selectIsLoading)
   const dispatch = useDispatch();
-  const navigate = useNa
+  const navigate = useNavigate()
 
   const  { name, quantity, category, price } = product;
 
@@ -28,7 +30,7 @@ const AddProduct = () => {
     setProducts({ ...product, [name]: value });
   };
 
-  const handleImageChange = () => {
+  const handleImageChange = (e) => {
     setProductImage(e.target.files[0])
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
@@ -61,9 +63,10 @@ const AddProduct = () => {
   }
   return (
     <div>
+      {isLoading && <Loader /> }
       <h3 className='--mt'>Add New Product</h3>
       <ProductForm
-       product ={products}
+       product ={product}
        productImage={productImage}
        imagePreview={imagePreview}
        description={description}
