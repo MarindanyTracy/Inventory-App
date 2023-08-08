@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './productList.scss';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { SpinnerImg } from '../../Loader/loader';
+import Search from '../../Search/Search';
 
 const ProductList = ({products, isLoading}) => {
+  const [search, setSearch] = useState("")
+
   if(!products) {
     return <p>Loading...</p>
   }
@@ -26,7 +29,7 @@ const ProductList = ({products, isLoading}) => {
             <h3>Inventory Items</h3>
           </span>
           <span>
-            <h3>Search products</h3>
+            <Search value={search} onChange={(e) => setSearch(e.target.value)} />
           </span>
         </div>
 
