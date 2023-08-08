@@ -13,7 +13,6 @@ const createProduct = async(formData) => {
 //Get all products
 const getProducts = async() => {
   const response = await axios.get( API_URL);
-
   return response.data;
 }
 

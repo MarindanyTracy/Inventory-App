@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './productList.scss';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { SpinnerImg } from '../../Loader/loader';
 import Search from '../../Search/Search';
+import { useSelector } from 'react-redux';
+import { FILTER_PRODUCTS, selectFilteredProducts } from '../../../redux/features/product/filterSlice';
+import { useDispatch } from 'react-redux';
 
 const ProductList = ({products, isLoading}) => {
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
+  const filteredProducts = useSelector(selectFilteredProducts);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(FILTER_PRODUCTS({ products, search }));
+  }, [products, search, dispatch]);
 
   if(!products) {
     return <p>Loading...</p>
   }
+  console.log({products});
 
   const shortenText = (text, n) => {
     if(text.length > n) {
@@ -19,6 +29,7 @@ const ProductList = ({products, isLoading}) => {
    }
    return text;
   }
+
 
   return (
     <div className='product-list'>
@@ -54,7 +65,7 @@ const ProductList = ({products, isLoading}) => {
 
               <tbody>
                 {
-                  products.map((product,index) => {
+                  filteredProducts.map((product,index) => {
                     const {_id, name, category, price,quantity} = product
                     return (
                       <tr key={_id}>
