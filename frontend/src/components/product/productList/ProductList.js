@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { deleteProduct, getProducts } from '../../../redux/features/product/productSlice';
+import { Link } from 'react-router-dom';
 
 const ProductList = ({products, isLoading}) => {
   const [search, setSearch] = useState("");
@@ -117,8 +118,12 @@ const ProductList = ({products, isLoading}) => {
                         <td>{"$"}{price * quantity}</td>
                         <td className='icons'>
                           <span>
+                            <Link to={`/product-detail/${_id}`}>
                             <AiOutlineEye size={25} color={"purple"} />
+                            </Link>
+                            <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
+                            </Link>
                             <FaTrashAlt size={20} color={"red"} onClick={() => confirmDelete(_id)} />
                           </span>
                         </td>
