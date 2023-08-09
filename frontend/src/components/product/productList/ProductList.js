@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 import { FILTER_PRODUCTS, selectFilteredProducts } from '../../../redux/features/product/filterSlice';
 import { useDispatch } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { deleteProduct, getProducts } from '../../../redux/features/product/productSlice';
 
 const ProductList = ({products, isLoading}) => {
   const [search, setSearch] = useState("");
@@ -47,7 +50,27 @@ const ProductList = ({products, isLoading}) => {
    return text;
   }
 
+  const delProduct = async(id) => {
+  
+    await dispatch(deleteProduct(id))
+    await dispatch(getProducts())
+  }
 
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: 'Delete product',
+      message: 'Are you sure you want to delete product?',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: () => delProduct(id)
+        },
+        {
+          label: 'Cancel',
+        }
+      ]
+    });
+  }
   return (
     <div className='product-list'>
       <hr />
@@ -96,7 +119,7 @@ const ProductList = ({products, isLoading}) => {
                           <span>
                             <AiOutlineEye size={25} color={"purple"} />
                             <FaEdit size={20} color={"green"} />
-                            <FaTrashAlt size={20} color={"red"} />
+                            <FaTrashAlt size={20} color={"red"} onClick={() => confirmDelete(_id)} />
                           </span>
                         </td>
                       </tr>
