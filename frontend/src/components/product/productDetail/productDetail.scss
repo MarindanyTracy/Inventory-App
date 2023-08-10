@@ -27,4 +27,11 @@
 .group {
   border: 1px solid var(--dark-blue);
   padding: 5px;
+
+   .product-image {
+    max-width: 100%;
+    max-height: 400px;
+    display: block;
+    margin: 0 auto;
+   }
 }

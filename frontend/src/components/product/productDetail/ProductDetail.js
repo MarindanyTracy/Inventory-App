@@ -41,12 +41,16 @@ const ProductDetail = () => {
     <div className='product-detail'>
       <h3 className='--mt'>Product Detail</h3>
       <Card cardClass="card">
-        {isLoading && <SpinnerImg /> }
+        {/* {isLoading && <SpinnerImg /> } */}
         {product && (
           <div className='detail'>
-            <Card cardClass="group">
+          <Card cardClass="group">
               {product?.image ? (
-                <img src={product.image.filePath} alt={product.image.fileName} />
+                <img
+                  src={product.image.filePath}
+                  className='product-image'
+                  alt={product.image.fileName}
+                />
               ) : (
                 <p>No image set for this product</p>
               )}
