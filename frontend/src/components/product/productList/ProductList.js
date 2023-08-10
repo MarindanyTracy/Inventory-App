@@ -121,7 +121,7 @@ const ProductList = ({products, isLoading}) => {
                             <Link to={`/product-detail/${_id}`}>
                             <AiOutlineEye size={25} color={"purple"} />
                             </Link>
-                            <Link to={`/edit-product/${_id}`}>
+                            <Link to={`/edit-product/ ${_id}`}>
                             <FaEdit size={20} color={"green"} />
                             </Link>
                             <FaTrashAlt size={20} color={"red"} onClick={() => confirmDelete(_id)} />
