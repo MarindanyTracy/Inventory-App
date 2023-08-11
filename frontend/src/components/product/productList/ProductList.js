@@ -21,7 +21,7 @@ const ProductList = ({products, isLoading}) => {
   //Begin Pagination
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 3
+  const itemsPerPage = 5
 
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = filteredProducts.slice(itemOffset, endOffset);
