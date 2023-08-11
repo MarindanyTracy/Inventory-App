@@ -7,6 +7,7 @@ import Card from '../../components/Card/Card';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { updateUser } from '../../services/authService';
+import ChangePassword from '../../components/changePassword/ChangePassword';
 
 const EditProfile = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -123,6 +124,9 @@ const EditProfile = () => {
           </span>
           </form>
         </Card>
+
+        <br />
+        <ChangePassword />
     </div>
   )
 }
