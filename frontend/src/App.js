@@ -19,6 +19,7 @@ import ProductDetail from "./components/product/productDetail/ProductDetail";
 import EditProduct from "./Pages/editProduct/EditProduct";
 import Profile from "./Pages/profile/Profile";
 import EditProfile from "./Pages/profile/EditProfile";
+import Contact from "./Pages/contact/Contact";
 
 axios.defaults.withCredentials = true;
 
@@ -99,6 +100,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <EditProfile />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/contactus"
+          element={
+            <Sidebar>
+              <Layout>
+                <Contact />
               </Layout>
             </Sidebar>
           }
